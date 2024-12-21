@@ -1,0 +1,25 @@
+let obj = {
+  a : {
+    b : {
+      c : '+++'
+      
+    }
+  }
+};
+undefined
+let jsonObject = JSON.stringify(obj);
+
+function traverse (jsonObject, callback) {
+  JSON.parse(jsonObject, function (key, value) {
+    if (key == 'a' || key == 'b' || key == 'c' ) {
+      callback.call(this,key,value)
+    }
+  return key,value;
+  })
+}
+
+traverse (jsonObject, function (key, value) {
+  let result = [key,value];
+
+  console.log(value);
+})
